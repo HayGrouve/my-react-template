@@ -1,0 +1,75 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  padding-inline: 1rem;
+  overflow: hidden;
+  font-size: 1.3rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all 1s;
+  background-color: rgba(33, 33, 33, 0.8);
+  font-family: "Lobster", cursive;
+}
+
+.list {
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  transition: all 0.2s;
+  padding: 1.2rem 0.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.list li:hover,
+.list li:active,
+.list li:focus {
+  transform: scale(1.15);
+  color: #222;
+  background: white;
+}
+
+.navPosition {
+  position: absolute;
+  width: 100vw;
+  z-index: 2;
+}
+
+.icon {
+  margin-inline: 0.4rem;
+}
+
+.logo {
+  max-width: 3.5rem;
+  max-height: 3.5rem;
+  cursor: pointer;
+  fill: white;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+
+.logo:hover {
+  fill: #222;
+  background: white;
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.logoContainer span {
+  letter-spacing: 0.2rem;
+  line-height: 1rem;
+}
