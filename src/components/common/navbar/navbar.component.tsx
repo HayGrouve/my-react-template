@@ -1,44 +1,143 @@
-import { faHome, faUser, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faGlobeEurope,
+  faSearch,
+  faTimes,
+  faUser,
+  faUserPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
-import SVG from "react-inlinesvg";
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import styles from "./navbar.module.css";
 
-const Navbar = () => {
-  const navigate = useNavigate();
+function Navbar() {
+  const [click, setClick] = useState(false);
 
-  const onClick = (path: string) => {
-    navigate(path);
-  };
+  const handleClick = () => setClick(!click);
+  const hideOverlay = () => setClick(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", hideOverlay);
+
+    return () => {
+      window.removeEventListener("scroll", hideOverlay);
+    };
+  }, []);
 
   return (
-    <section className={styles.navPosition}>
-      <div>
-        <nav className={styles.wrapper}>
-          <div onClick={() => onClick("/")} className={styles.logoContainer}>
-            <SVG src="/images/logo.svg" className={styles.logo} />
-            <span>Вкусно!</span>
+    <div className={styles.wrapper}>
+      <div
+        className={click ? styles.overlay : ""}
+        onClick={() => hideOverlay()}
+      ></div>
+      <nav className={styles.navbar} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.navContainer}>
+          <NavLink to="/" className={styles.navLogo}>
+            Logo
+          </NavLink>
+          <ul
+            className={
+              click ? `${styles.navMenu} ${styles.active}` : styles.navMenu
+            }
+          >
+            <li className={styles.navItem}>
+              <NavLink
+                to="/search"
+                className={styles.navLinks}
+                onClick={click ? handleClick : undefined}
+              >
+                <FontAwesomeIcon className={styles.icon} icon={faSearch} />
+              </NavLink>
+            </li>
+            <li className={styles.verticalLine}></li>
+            <li className={styles.navItem}>
+              <NavLink
+                to="/"
+                className={styles.navLinks}
+                onClick={click ? handleClick : undefined}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li className={styles.navItem}>
+              <NavLink
+                to="/trading"
+                className={styles.navLinks}
+                onClick={click ? handleClick : undefined}
+              >
+                Trading
+              </NavLink>
+            </li>
+            <li className={styles.navItem}>
+              <NavLink
+                to="/markets"
+                className={styles.navLinks}
+                onClick={click ? handleClick : undefined}
+              >
+                Markets
+              </NavLink>
+            </li>
+            <li className={styles.navItem}>
+              <NavLink
+                to="/faq"
+                className={styles.navLinks}
+                onClick={click ? handleClick : undefined}
+              >
+                FAQ
+              </NavLink>
+            </li>
+            <li className={styles.navItem}>
+              <NavLink
+                to="/about"
+                className={styles.navLinks}
+                onClick={click ? handleClick : undefined}
+              >
+                About us
+              </NavLink>
+            </li>
+            <li className={styles.navItem}>
+              <NavLink
+                to="/language"
+                className={styles.navLinks}
+                onClick={click ? handleClick : undefined}
+              >
+                <FontAwesomeIcon className={styles.icon} icon={faGlobeEurope} />
+              </NavLink>
+            </li>
+            <li className={styles.verticalLine}></li>
+            <li className={styles.navItem}>
+              <NavLink
+                to="/login"
+                className={styles.navLinks}
+                onClick={click ? handleClick : undefined}
+              >
+                <FontAwesomeIcon className={styles.icon} icon={faUser} />
+                Login
+              </NavLink>
+            </li>
+            <li className={styles.navItem}>
+              <NavLink
+                to="/register"
+                className={styles.navLinks}
+                onClick={click ? handleClick : undefined}
+              >
+                <FontAwesomeIcon className={styles.icon} icon={faUserPlus} />
+                Sign up
+              </NavLink>
+            </li>
+          </ul>
+          <div className={styles.navIcon} onClick={handleClick}>
+            {click ? (
+              <FontAwesomeIcon icon={faTimes} />
+            ) : (
+              <FontAwesomeIcon icon={faBars} />
+            )}
           </div>
-          <ul className={styles.list}>
-            <li onClick={() => onClick("/")}>
-              <FontAwesomeIcon className={styles.icon} icon={faHome} />
-              Home
-            </li>
-          </ul>
-          <ul className={styles.list}>
-            <li onClick={() => onClick("/login")}>
-              <FontAwesomeIcon className={styles.icon} icon={faUser} />
-              Login
-            </li>
-            <li onClick={() => onClick("/register")}>
-              <FontAwesomeIcon className={styles.icon} icon={faUserPlus} />
-              Sign up
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </section>
+        </div>
+      </nav>
+    </div>
   );
-};
+}
 
 export default Navbar;

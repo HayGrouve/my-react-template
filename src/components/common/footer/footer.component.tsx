@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
       </button>
       <div onClick={() => navigate("/")} className={styles.logoContainer}>
         <SVG src="/images/logo.svg" className={styles.logo} />
-        <span>Вкусно!</span>
+        <span>Logo</span>
       </div>
       <section className={styles.socialMedia}>
         <p>Copyright © 2022 All Rights Reserved by Ts.Tsekov.</p>

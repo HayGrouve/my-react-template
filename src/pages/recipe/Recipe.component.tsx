@@ -1,13 +1,11 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import styles from "./recipe.module.css";
 
 const Recipe: React.FC = () => {
-  const navigate = useNavigate();
-  const { id } = useParams();
+  // const { id } = useParams();
 
   return (
-    <section>
+    <section className={styles.wrapper}>
       <h1>Recipe page</h1>
     </section>
   );

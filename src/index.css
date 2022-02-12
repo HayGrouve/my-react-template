@@ -39,6 +39,13 @@ html:focus-within {
   scroll-behavior: smooth;
 }
 
+/* Footer container */
+.main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Set core body defaults */
 body {
   min-height: 100vh;
